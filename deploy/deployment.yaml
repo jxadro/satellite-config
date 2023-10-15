@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  namespace: test-app
+  labels:
+    app: test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - name: hellonode
+        env:
+          - name: clustername
+            valueFrom:
+              configMapKeyRef:
+                name: democm
+                key: cluster
+        image: docker.io/jxadro/hellonode:6.0
+        ports:
+        - containerPort: 8081
