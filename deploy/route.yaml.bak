@@ -6,7 +6,6 @@ metadata:
   name: test-app
   namespace: test-app
 spec:
-  host: demoapp.es
   port:
     targetPort: 8081
   to:
